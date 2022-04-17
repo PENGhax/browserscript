@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <table></table>
+    <script>
+      var e = new Date(),
+        t = e.getFullYear(),
+        n = e.getMonth() + 1,
+        r = e.getDate(),
+        u = e.getHours(),
+        o = e.getMinutes(),
+        g = e.getSeconds();
+      String(n).length < 2 && (n = Number("0" + n)),
+        String(r).length < 2 && (r = Number("0" + r)),
+        String(u).length < 2 && (u = Number("0" + u)),
+        String(o).length < 2 && (o = Number("0" + o)),
+        String(g).length < 2 && (g = Number("0" + g));
+      var i = "" + t + n + r + u + o + g + "_" + Math.random().toString(36).substr(2, 9);
+      console.log(i);
+    </script>
+  </body>
+</html>
