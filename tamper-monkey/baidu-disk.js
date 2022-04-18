@@ -4181,7 +4181,7 @@ var responseErrorMsg = `<p>扫描图片二维码，点击<b>“16位密码”</b
                             <b style="color: red">复制UA并配置到下载器中</b>
                           </p>
                         </div>
-                        <img alt="扫码关注-大鹏小客微信公众号，发送消息kinh获取卡密" src="https://s3.bmp.ovh/imgs/2022/04/17/5818b0e8025e9234.jpg" width="270px"/>
+                        <img alt="扫码关注-大鹏小客微信公众号，发送消息kinh获取卡密" src="${qrCodeImgUrl}" width="270px"/>
                       </div>
                     </div>
                   </div>`;
