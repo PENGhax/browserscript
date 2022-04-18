@@ -36,9 +36,6 @@ var srcVersion = "1.3.4";
     for (var i in a) ("object" == typeof exports ? exports : root)[i] = a[i];
   }
 })(window, function () {
-  if (window.location.href.match("https://pan.baidu.com/disk/main") !== null) {
-    window.location.replace("https://pan.baidu.com/disk/home?from=newversion&stayAtHome=true");
-  }
   return (function (modules) {
     var installedModules = {};
     function __webpack_require__(moduleId) {
