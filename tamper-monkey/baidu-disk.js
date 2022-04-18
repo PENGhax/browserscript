@@ -2,7 +2,7 @@
 // @name           数码小站百度网盘直链解析-大鹏小客净化版
 // @description    去广告纯净版。可关注微信公众号大鹏小客获取更多精彩内容。
 // @license        MIT
-// @version        1.1.5
+// @version        1.1.6
 // @author         大鹏小客
 // @source         https://wiki.shuma.ink
 // @include        *://pan.baidu.com*
