@@ -2,7 +2,7 @@
 // @name           数码小站百度网盘直链解析-大鹏小客净化版
 // @description    去广告纯净版。可关注微信公众号大鹏小客获取更多精彩内容。
 // @license        MIT
-// @version        1.1.5
+// @version        1.1.4
 // @author         大鹏小客
 // @source         https://wiki.shuma.ink
 // @include        *://pan.baidu.com*
@@ -21,11 +21,10 @@
 // @connect        baidu.com
 // @connect        localhost
 // @run-at         document-end
-// ==/UserScrißpt==
+// ==/UserScript==
 
 var srcVersion = "1.3.4";
-var qrCodeImgUrl = "https://s1.328888.xyz/2022/04/18/rLvne.jpg";
-var responseErrorMsg = `<p>扫描图片二维码，点击<b>“16位密码”</b>获取卡密。</p><img src="${qrCodeImgUrl}" alt="网盘辅助脚本" width="360" style="margin:12px 0 24px 0;"/>`;
+var qrCodeImgUrl = "https://s3.bmp.ovh/imgs/2022/03/5e17e3d8ef59379e.jpg";
 !(function webpackUniversalModuleDefinition(root, factory) {
   if ("object" == typeof exports && "object" == typeof module) module.exports = factory();
   else if ("function" == typeof define && define.amd) define([], factory);
@@ -465,6 +464,7 @@ var responseErrorMsg = `<p>扫描图片二维码，点击<b>“16位密码”</b
       exports.AppBase = AppBase;
     },
     function (module, exports, __webpack_require__) {
+      // logging typs
       "use strict";
       Object.defineProperty(exports, "__esModule", {
         value: !0,
@@ -494,6 +494,7 @@ var responseErrorMsg = `<p>扫描图片二维码，点击<b>“16位密码”</b
       exports.Logger = Logger;
     },
     function (module, exports, __webpack_require__) {
+      // localStorage handler
       "use strict";
       Object.defineProperty(exports, "__esModule", {
         value: !0,
@@ -768,13 +769,7 @@ var responseErrorMsg = `<p>扫描图片二维码，点击<b>“16位密码”</b
         (exports.Constant = void 0);
       var Constant = (function () {
         function Constant() {}
-        return (
-          (Constant.AriaConfig = "AriaConfig_Cache"),
-          (Constant.CouponJump = "Coupon_Jump"),
-          (Constant.CouponJumpFlag = "Coupon_Jump_Flag"),
-          (Constant.PanJump = "Pan_Jump"),
-          Constant
-        );
+        return (Constant.PanJump = "Pan_Jump"), Constant;
       })();
       exports.Constant = Constant;
     },
@@ -798,6 +793,7 @@ var responseErrorMsg = `<p>扫描图片二维码，点击<b>“16位密码”</b
       exports.Url = Url;
     },
     function (module, exports, __webpack_require__) {
+      // HTTP Request handler
       "use strict";
       Object.defineProperty(exports, "__esModule", {
         value: !0,
@@ -805,7 +801,6 @@ var responseErrorMsg = `<p>扫描图片二维码，点击<b>“16位密码”</b
         (exports.HttpHeaders = exports.Http = void 0);
       var Logger_1 = __webpack_require__(4),
         Common_1 = __webpack_require__(26),
-        Config_1 = __webpack_require__(5),
         Http = (function () {
           function Http() {}
           return (
@@ -940,39 +935,6 @@ var responseErrorMsg = `<p>扫描图片二维码，点击<b>“16位密码”</b
       exports.HttpHeaders = HttpHeaders;
     },
     function (module, exports, __webpack_require__) {
-      "use strict";
-      Object.defineProperty(exports, "__esModule", {
-        value: !0,
-      }),
-        (exports.CouponRoutes = void 0);
-      var Http_1 = __webpack_require__(10),
-        CouponRoutes = (function () {
-          function CouponRoutes() {}
-          return (
-            (CouponRoutes.couponQuery = function (id, type) {
-              var data = new Map();
-              return (
-                data.set("id", id),
-                data.set("type", type),
-                Http_1.Http.post("https://api.shuma.ink/quan/info", data, "formdata")
-              );
-            }),
-            (CouponRoutes.historyQuery = function (url) {
-              return Http_1.Http.get(
-                "https://browser.gwdang.com/extension/price_towards?url=" +
-                  encodeURIComponent(url) +
-                  "&ver=1&union=union_gwdang&version=" +
-                  new Date().getTime() +
-                  "&format=json&from_device=chrome",
-                new Map()
-              );
-            }),
-            CouponRoutes
-          );
-        })();
-      exports.CouponRoutes = CouponRoutes;
-    },
-    function (module, exports, __webpack_require__) {
       (exports = __webpack_require__(6)(!1)).push([
         module.i,
         ".pantools-container { z-index: 99999!important }\n.pantools-popup { font-size: 14px !important }\n.pantools-setting-label { display: flex;align-items: center;justify-content: space-between;padding-top: 20px; }\n.pantools-setting-checkbox { width: 16px;height: 16px; }",
@@ -1004,15 +966,7 @@ var responseErrorMsg = `<p>扫描图片二维码，点击<b>“16位密码”</b
     function (module, exports, __webpack_require__) {
       (exports = __webpack_require__(6)(!1)).push([
         module.i,
-        '.PanTools-Coupon-Wrap {margin: 10px 0;overflow: hidden;color: #fff;\n}\n\n.PanTools-Coupon-Wrap .coupon {background-image: linear-gradient(150deg, rgb(255, 153, 0), rgb(255, 102, 153));display: inline-flex;color: white;position: relative;padding-left: 0.5rem;padding-right: 0.5rem;border-top-right-radius: 0.3rem;border-bottom-right-radius: 0.3rem;overflow: hidden;\n}\n\n.PanTools-Coupon-Wrap .coupon::before {left: -7px;content: "";position: absolute;top: 0px;height: 100%;width: 14px;background-image: radial-gradient(white 0px, white 4px, transparent 4px);background-size: 14px 14px;z-index: 1;background-position: 0px 2px;background-repeat: repeat-y;\n}\n\n.PanTools-Coupon-Wrap .coupon .coupon-info {border-right: 2px dashed white;padding-left: 20px;padding-top: 20px;padding-bottom: 20px;position: relative;min-width: 200px;font-size: 14px;\n}\n\n.PanTools-Coupon-Wrap .coupon .coupon-info::before, .PanTools-Coupon-Wrap .coupon .coupon-info::after {content: "";width: 20px;height: 20px;background-color: white;position: absolute;right: -11px;border-radius: 50%;\n}\n\n.PanTools-Coupon-Wrap .coupon .coupon-info::before {top: -10px;\n}\n\n.PanTools-Coupon-Wrap .coupon .coupon-info::after {bottom: -10px;\n}\n\n.PanTools-Coupon-Wrap .coupon .coupon-info .coupon-desc {font-size: 18px;font-weight: bold;\n}\n\n.PanTools-Coupon-Wrap .coupon .coupon-get {display: flex;justify-content: center;align-items: center;flex-direction: column;min-width: 100px;position: relative;font-size: 20px;color: rgb(255, 255, 255);padding: 20px;\n}\n\n.coupon-time {color: #ff8440;margin-top: 5px;\n}\n',
-        "",
-      ]),
-        (module.exports = exports);
-    },
-    function (module, exports, __webpack_require__) {
-      (exports = __webpack_require__(6)(!1)).push([
-        module.i,
-        "#PanTools-outside {border: 1px solid #eee;margin: 0 auto;position: relative;clear: both;display: none\n}\n\n#PanTools-outside .PanTools-outside-coupons {width: 240px;float: left\n}\n\n#PanTools-outside .PanTools-outside-coupons .PanTools-outside-coupons-qrcode {text-align: center;min-height: 150px;margin-top: 30px\n}\n\n#PanTools-outside .PanTools-outside-coupons .PanTools-outside-coupons-qrcode canvas,\n#PanTools-outside .PanTools-outside-coupons .PanTools-outside-coupons-qrcode img {margin: 0 auto\n}\n\n#PanTools-outside .PanTools-outside-coupons .PanTools-outside-coupons-title {margin-top: 20px;color: #000;font-size: 14px;font-weight: 700;text-align: center\n}\n\n#PanTools-outside .PanTools-outside-coupons .PanTools-outside-coupons-title span {color: #ff0036;font-weight: 700\n}\n\n#PanTools-outside .PanTools-outside-coupons .PanTools-outside-coupons-action {margin-top: 10px;text-align: center\n}\n\n#PanTools-outside .PanTools-outside-coupons .PanTools-outside-coupons-action a {text-decoration: none\n}\n\n#PanTools-outside .PanTools-outside-coupons .PanTools-outside-coupons-action .PanTools-outside-coupons-button {min-width: 135px;padding: 0 8px;line-height: 35px;color: #fff;background: #ff0036;font-size: 13px;font-weight: 700;letter-spacing: 1.5px;margin: 0 auto;text-align: center;border-radius: 15px;display: inline-block;cursor: pointer\n}\n\n#PanTools-outside .PanTools-outside-coupons .PanTools-outside-coupons-action .PanTools-outside-coupons-button.quan-none {color: #000;background: #bec5c5\n}\n\n.PanTools-outside-coupons-date {color: #233b3d;font-weight: normal;font-size: 12px;\n}\n\n#PanTools-outside .PanTools-outside-history .PanTools-outside-history-tip {position: absolute;margin: 0;top: 50%;left: 50%;letter-spacing: 1px;font-size: 15px;transform: translateX(-50%) translateY(-50%)}#PanTools-outside .PanTools-outside-history, #PanTools-outside-chart-body {height: 300px;overflow: hidden;position: relative\n}\n\n#PanTools-outside .PanTools-outside-history .PanTools-outside-chart-container,#PanTools-outside-chart-container-line {width: 100%;height: 100%;}.closeBtn{border: unset !important;border-radius: 50% !important;background-color: #31429D !important;box-sizing: border-box;font-size: 20px !important;padding: 0.3rem 0.3rem 0.15rem 0.35rem;}",
+        "#PanTools-outside {border: 1px solid #eee;margin: 0 auto;position: relative;clear: both;display: none;}#PanTools-outside .PanTools-outside-history .PanTools-outside-history-tip {position: absolute;margin: 0;top: 50%;left: 50%;letter-spacing: 1px;font-size: 15px;transform: translateX(-50%) translateY(-50%)}#PanTools-outside .PanTools-outside-history, #PanTools-outside-chart-body {height: 300px;overflow: hidden;position: relative\n}\n\n#PanTools-outside .PanTools-outside-history .PanTools-outside-chart-container,#PanTools-outside-chart-container-line {width: 100%;height: 100%;}.closeBtn{border: unset !important;border-radius: 50% !important;background-color: #31429D !important;box-sizing: border-box;font-size: 20px !important;padding: 0.3rem 0.3rem 0.15rem 0.35rem;}",
         "",
       ]),
         (module.exports = exports);
@@ -1086,6 +1040,7 @@ var responseErrorMsg = `<p>扫描图片二维码，点击<b>“16位密码”</b
       };
     },
     function (module, exports, __webpack_require__) {
+      // CSS framework
       (module.exports = (function () {
         "use strict";
         function _typeof(obj) {
@@ -3746,13 +3701,10 @@ var responseErrorMsg = `<p>扫描图片二维码，点击<b>“16位密码”</b
             (BrowerType[(BrowerType.Chrome = 2)] = "Chrome"),
             (BrowerType[(BrowerType.Firefox = 3)] = "Firefox"),
             (BrowerType[(BrowerType.Safiri = 4)] = "Safiri"),
-            (BrowerType[(BrowerType.Se360 = 5)] = "Se360"),
-            (BrowerType[(BrowerType.Ie2345 = 6)] = "Ie2345"),
             (BrowerType[(BrowerType.Baidu = 7)] = "Baidu"),
             (BrowerType[(BrowerType.Liebao = 8)] = "Liebao"),
             (BrowerType[(BrowerType.UC = 9)] = "UC"),
             (BrowerType[(BrowerType.QQ = 10)] = "QQ"),
-            (BrowerType[(BrowerType.Sogou = 11)] = "Sogou"),
             (BrowerType[(BrowerType.Opera = 12)] = "Opera"),
             (BrowerType[(BrowerType.Maxthon = 13)] = "Maxthon");
         })(exports.BrowerType || (exports.BrowerType = {}));
@@ -4372,47 +4324,6 @@ var responseErrorMsg = `<p>扫描图片二维码，点击<b>“16位密码”</b
                 PanParse.initDownFile();
             });
           }),
-          (PanParse.sentToAria = function (fileUrl, fileName, userAgent) {
-            return __awaiter(this, void 0, void 0, function () {
-              var ariaConfig, _ariaConfig, ariaData;
-              return __generator(this, function (_a) {
-                return (
-                  (ariaConfig = Config_1.Config.get(Constant_1.Constant.AriaConfig, {
-                    rpcUrl: "",
-                    rpcToken: "",
-                    rpcDic: "",
-                  })),
-                  ("" != (_ariaConfig = ariaConfig).rpcDic && "" != _ariaConfig.rpcUrl) ||
-                    PanParse.log("Aria2下载器配置尚未完成,请先配置Aria2下载器信息"),
-                  (ariaData = {
-                    jsonrpc: "2.0",
-                    id: "1629360475902",
-                    method: "aria2.addUri",
-                    params: [
-                      "token:" + ariaConfig.rpcToken,
-                      ["" + fileUrl],
-                      {
-                        dir: "" + ariaConfig.rpcDic,
-                        out: "" + fileName,
-                        "user-agent": "" + userAgent,
-                        "max-connection-per-server": "4",
-                        split: "4",
-                        "piece-length": "1M",
-                      },
-                    ],
-                  }),
-                  Http_1.Http.post(_ariaConfig.rpcUrl, ariaData, "json")
-                    .then(function (res) {
-                      Logger_1.Logger.debug(res), PanParse.log("发送成功！");
-                    })
-                    .catch(function () {
-                      PanParse.log("发送至Aria2时发生未知错误，请重试！");
-                    }),
-                  [2]
-                );
-              });
-            });
-          }),
           (PanParse.shareFile = function (file) {
             var _a;
             return __awaiter(this, void 0, void 0, function () {
@@ -4604,19 +4515,6 @@ var responseErrorMsg = `<p>扫描图片二维码，点击<b>“16位密码”</b
         );
       })();
       exports.Common = Common;
-    },
-    function (module, exports, __webpack_require__) {
-      "use strict";
-      Object.defineProperty(exports, "__esModule", {
-        value: !0,
-      }),
-        (exports.ItemType = void 0),
-        (function (ItemType) {
-          (ItemType.TaoBao = "tb"),
-            (ItemType.TMall = "tm"),
-            (ItemType.JingDong = "jd"),
-            (ItemType.JingDongChaoshi = "jdcs");
-        })(exports.ItemType || (exports.ItemType = {}));
     },
     function (module, exports, __webpack_require__) {
       "use strict";
@@ -5423,26 +5321,16 @@ var responseErrorMsg = `<p>扫描图片二维码，点击<b>“16位密码”</b
         Container_1 = __webpack_require__(18),
         Logger_1 = __webpack_require__(4),
         PanParse_1 = __webpack_require__(24),
-        ListCoupon_1 = __webpack_require__(43),
-        MovieParse_1 = __webpack_require__(45),
-        DetailCoupon_1 = __webpack_require__(48),
-        Gwd_1 = __webpack_require__(50),
-        GwdClean_1 = __webpack_require__(53),
         DownCleaner_1 = __webpack_require__(54),
         Options_1 = __webpack_require__(55),
         PanTools = (function () {
           function PanTools() {
             (this.plugins = new Array()),
               (this.plugins = [
-                Container_1.Container.Require(DetailCoupon_1.DetailCoupon),
-                Container_1.Container.Require(ListCoupon_1.ListCoupon),
-                Container_1.Container.Require(Gwd_1.Gwd),
-                Container_1.Container.Require(MovieParse_1.MovieParse),
                 Container_1.Container.Require(Options_1.Options),
                 Container_1.Container.Require(PanFill_1.PanFill),
                 Container_1.Container.Require(DownCleaner_1.DownCleaner),
                 Container_1.Container.Require(PanParse_1.PanParse),
-                Container_1.Container.Require(GwdClean_1.GwdClean),
                 Container_1.Container.Require(PanCode_1.PanCode),
               ]),
               Logger_1.Logger.info("container loaded");
@@ -6693,542 +6581,6 @@ var responseErrorMsg = `<p>扫描图片二维码，点击<b>“16位密码”</b
     },
     function (module, exports, __webpack_require__) {
       "use strict";
-      var extendStatics,
-        __extends =
-          (this && this.__extends) ||
-          ((extendStatics = function (d, b) {
-            return (
-              (extendStatics =
-                Object.setPrototypeOf ||
-                ({
-                  __proto__: [],
-                } instanceof Array &&
-                  function (d, b) {
-                    d.__proto__ = b;
-                  }) ||
-                function (d, b) {
-                  for (var p in b) b.hasOwnProperty(p) && (d[p] = b[p]);
-                }),
-              extendStatics(d, b)
-            );
-          }),
-          function (d, b) {
-            function __() {
-              this.constructor = d;
-            }
-            extendStatics(d, b),
-              (d.prototype = null === b ? Object.create(b) : ((__.prototype = b.prototype), new __()));
-          }),
-        __awaiter =
-          (this && this.__awaiter) ||
-          function (thisArg, _arguments, P, generator) {
-            return new (P || (P = Promise))(function (resolve, reject) {
-              function fulfilled(value) {
-                try {
-                  step(generator.next(value));
-                } catch (e) {
-                  reject(e);
-                }
-              }
-              function rejected(value) {
-                try {
-                  step(generator.throw(value));
-                } catch (e) {
-                  reject(e);
-                }
-              }
-              function step(result) {
-                result.done
-                  ? resolve(result.value)
-                  : (function adopt(value) {
-                      return value instanceof P
-                        ? value
-                        : new P(function (resolve) {
-                            resolve(value);
-                          });
-                    })(result.value).then(fulfilled, rejected);
-              }
-              step((generator = generator.apply(thisArg, _arguments || [])).next());
-            });
-          },
-        __generator =
-          (this && this.__generator) ||
-          function (thisArg, body) {
-            var f,
-              y,
-              t,
-              g,
-              _ = {
-                label: 0,
-                sent: function () {
-                  if (1 & t[0]) throw t[1];
-                  return t[1];
-                },
-                trys: [],
-                ops: [],
-              };
-            return (
-              (g = {
-                next: verb(0),
-                throw: verb(1),
-                return: verb(2),
-              }),
-              "function" == typeof Symbol &&
-                (g[Symbol.iterator] = function () {
-                  return this;
-                }),
-              g
-            );
-            function verb(n) {
-              return function (v) {
-                return (function step(op) {
-                  if (f) throw new TypeError("Generator is already executing.");
-                  for (; _; )
-                    try {
-                      if (
-                        ((f = 1),
-                        y &&
-                          (t = 2 & op[0] ? y.return : op[0] ? y.throw || ((t = y.return) && t.call(y), 0) : y.next) &&
-                          !(t = t.call(y, op[1])).done)
-                      )
-                        return t;
-                      switch (((y = 0), t && (op = [2 & op[0], t.value]), op[0])) {
-                        case 0:
-                        case 1:
-                          t = op;
-                          break;
-
-                        case 4:
-                          return (
-                            _.label++,
-                            {
-                              value: op[1],
-                              done: !1,
-                            }
-                          );
-
-                        case 5:
-                          _.label++, (y = op[1]), (op = [0]);
-                          continue;
-
-                        case 7:
-                          (op = _.ops.pop()), _.trys.pop();
-                          continue;
-
-                        default:
-                          if (!((t = _.trys), (t = t.length > 0 && t[t.length - 1]) || (6 !== op[0] && 2 !== op[0]))) {
-                            _ = 0;
-                            continue;
-                          }
-                          if (3 === op[0] && (!t || (op[1] > t[0] && op[1] < t[3]))) {
-                            _.label = op[1];
-                            break;
-                          }
-                          if (6 === op[0] && _.label < t[1]) {
-                            (_.label = t[1]), (t = op);
-                            break;
-                          }
-                          if (t && _.label < t[2]) {
-                            (_.label = t[2]), _.ops.push(op);
-                            break;
-                          }
-                          t[2] && _.ops.pop(), _.trys.pop();
-                          continue;
-                      }
-                      op = body.call(thisArg, _);
-                    } catch (e) {
-                      (op = [6, e]), (y = 0);
-                    } finally {
-                      f = t = 0;
-                    }
-                  if (5 & op[0]) throw op[1];
-                  return {
-                    value: op[0] ? op[1] : void 0,
-                    done: !0,
-                  };
-                })([n, v]);
-              };
-            }
-          };
-      Object.defineProperty(exports, "__esModule", {
-        value: !0,
-      }),
-        (exports.ListCoupon = void 0);
-      var AppBase_1 = __webpack_require__(3),
-        SiteEnum_1 = __webpack_require__(1),
-        ItemType_1 = __webpack_require__(27),
-        Core_1 = __webpack_require__(2),
-        Config_1 = __webpack_require__(5),
-        CouponRoutes_1 = __webpack_require__(11),
-        Tao_1 = __webpack_require__(44),
-        ListCoupon = (function (_super) {
-          function ListCoupon() {
-            var _this = (null !== _super && _super.apply(this, arguments)) || this;
-            return (
-              (_this.appName = "ListCoupon"),
-              (_this.rules = new Map([
-                [SiteEnum_1.SiteEnum.TaoBao, /s.taobao.com\/search/i],
-                [SiteEnum_1.SiteEnum.TMall, /list.tmall.com\/search_product.htm/i],
-              ])),
-              (_this.selectorList = []),
-              (_this.atrack = []),
-              (_this.key = "list_coupon_info_"),
-              _this
-            );
-          }
-          return (
-            __extends(ListCoupon, _super),
-            (ListCoupon.prototype.loader = function () {}),
-            Object.defineProperty(ListCoupon, "style", {
-              get: function () {
-                return "    .PanTools-tb-box-area {position: absolute;top: 10px;right: 5px;z-index: 9999;}.PanTools-jd-box-area {position: absolute;top: 235px;left: 10px;z-index: 9999;}  .PanTools-jdcs-box-area {position: absolute;top: 5px;right: 0px;z-index: 9999;}.PanTools-box-info-translucent{opacity: .33;}.PanTools-box-info, .PanTools-box-info:hover, .PanTools-box-info:visited {text-decoration: none!important;}.PanTools-box-wait{cursor:pointer}.PanTools-box-info {width: auto!important;height: auto!important;padding: 6px 8px!important;font-size: 12px;color: #fff!important;border-radius: 15px;cursor: pointer;}.PanTools-jd-box-info-default, .PanTools-tb-box-info-default, .PanTools-jdcs-box-info-default{background: #3186fd!important;}.PanTools-box-info-empty {color: #000!important;background: #ccc!important;}.PanTools-box-info-find {background: #ff0036!important;}.PanTools-box-done{position:relative}";
-              },
-              enumerable: !1,
-              configurable: !0,
-            }),
-            (ListCoupon.prototype.run = function () {
-              switch (this.site) {
-                case SiteEnum_1.SiteEnum.TaoBao:
-                  this.selectorList.push(".items .item"),
-                    this.atrack.push(".pic a", ".title a"),
-                    (this.itemType = ItemType_1.ItemType.TaoBao);
-                  break;
-
-                case SiteEnum_1.SiteEnum.TMall:
-                  this.selectorList.push(".product"),
-                    this.atrack.push(".productImg-wrap a", ".productTitle a"),
-                    (this.itemType = ItemType_1.ItemType.TaoBao);
-              }
-              var that = this;
-              this.initStyle(),
-                Core_1.Core.autoLazyload(
-                  function () {
-                    try {
-                      return null != $ && null != jQuery;
-                    } catch (e) {
-                      return !1;
-                    }
-                  },
-                  function () {
-                    return that.initSearchEvent();
-                  },
-                  3
-                ),
-                Core_1.Core.background(function () {
-                  return that.initSearch(that);
-                }, 3),
-                Core_1.Core.background(function () {
-                  return that.initQuery();
-                }, 4);
-            }),
-            (ListCoupon.prototype.initStyle = function () {
-              Core_1.Core.addStyle(ListCoupon.style);
-            }),
-            (ListCoupon.prototype.initSearchEvent = function () {
-              var that = this;
-              try {
-                $(document).on("click", ".PanTools-" + that.itemType + "-box-area", function () {
-                  var $this = $(this);
-                  $this.hasClass("PanTools-box-wait")
-                    ? that.queryInfo(this)
-                    : $this.hasClass("PanTools-box-info-translucent")
-                    ? $this.removeClass("PanTools-box-info-translucent")
-                    : $this.addClass("PanTools-box-info-translucent");
-                });
-              } catch (e) {
-                Core_1.Core.background(function () {
-                  $(".PanTools-" + that.itemType + "-box-area").click(function () {
-                    var $this = $(this);
-                    $this.hasClass("PanTools-box-wait")
-                      ? that.queryInfo(this)
-                      : $this.hasClass("PanTools-box-info-translucent")
-                      ? $this.removeClass("PanTools-box-info-translucent")
-                      : $this.addClass("PanTools-box-info-translucent");
-                  });
-                });
-              }
-            }),
-            (ListCoupon.prototype.initSearch = function (that) {
-              that.selectorList.forEach(function (e, i) {
-                $(e).each(function (index, ele) {
-                  that.initSearchItem(ele);
-                });
-              });
-            }),
-            (ListCoupon.prototype.initSearchItem = function (selector) {
-              var _a,
-                _b,
-                _c,
-                _d,
-                _e,
-                _f,
-                $dom = $(selector);
-              if (!$dom.hasClass("PanTools-box-done")) {
-                $dom.addClass("PanTools-box-done");
-                var itemId =
-                  null !== (_b = null !== (_a = $dom.attr("data-id")) && void 0 !== _a ? _a : $dom.data("sku")) &&
-                  void 0 !== _b
-                    ? _b
-                    : "";
-                if (
-                  (Tao_1.Tao.isVailidItemId(itemId) ||
-                    (itemId =
-                      null !==
-                        (_d = null !== (_c = $dom.attr("data-itemid")) && void 0 !== _c ? _c : $dom.data("spu")) &&
-                      void 0 !== _d
-                        ? _d
-                        : ""),
-                  !Tao_1.Tao.isVailidItemId(itemId))
-                )
-                  if ($dom.attr("href")) itemId = location.protocol + $dom.attr("href");
-                  else {
-                    var $a = $dom.find("a");
-                    if (!$a.length) return;
-                    (itemId = null !== (_e = $a.attr("data-nid")) && void 0 !== _e ? _e : ""),
-                      Tao_1.Tao.isVailidItemId(itemId) ||
-                        (itemId =
-                          $a.hasClass("j_ReceiveCoupon") && $a.length > 1
-                            ? location.protocol + $($a[1]).attr("href")
-                            : location.protocol + $a.attr("href"));
-                  }
-                if (!Tao_1.Tao.isVailidItemId(itemId) && itemId.indexOf("http") > -1) {
-                  var res = null !== (_f = /item.jd.com\/(.*?).html/i.exec(itemId)) && void 0 !== _f ? _f : [];
-                  itemId = res.length > 0 ? res[1] : "";
-                }
-                Tao_1.Tao.isValidTaoId(itemId) && (this.initBoxHtml($dom, itemId), this.initTagClass($dom, itemId));
-              }
-            }),
-            (ListCoupon.prototype.initTagClass = function (target, itemId) {
-              this.atrack.forEach(function (e) {
-                target.find(e).hasClass("PanTools-item-" + itemId) ||
-                  target.find(e).addClass("PanTools-item-" + itemId);
-              });
-            }),
-            (ListCoupon.prototype.initBoxHtml = function (target, itemId) {
-              target.append(
-                '<div class="PanTools-' +
-                  this.itemType +
-                  '-box-area PanTools-box-wait" data-itemid="' +
-                  itemId +
-                  '"><a class="PanTools-box-info PanTools-' +
-                  this.itemType +
-                  '-box-info-default" title="点击查询">待查询</a></div>'
-              );
-            }),
-            (ListCoupon.prototype.initQuery = function () {
-              var _this = this;
-              $(".PanTools-box-wait").each(function (index, ele) {
-                _this.queryInfo(ele);
-              });
-            }),
-            (ListCoupon.prototype.queryInfo = function (target) {
-              return __awaiter(this, void 0, void 0, function () {
-                var that, $this, itemId, couponInfo;
-                return __generator(this, function (_a) {
-                  switch (_a.label) {
-                    case 0:
-                      return (
-                        (that = this),
-                        ($this = $(target)).removeClass("PanTools-box-wait"),
-                        (itemId = $this.data("itemid")),
-                        (couponInfo = Config_1.Config.get("" + that.key + itemId))
-                          ? (that.initCouponInfo(itemId, couponInfo, target), [3, 3])
-                          : [3, 1]
-                      );
-
-                    case 1:
-                      return [
-                        4,
-                        CouponRoutes_1.CouponRoutes.couponQuery(itemId, that.itemType).then(function (
-                          couponInfoResult
-                        ) {
-                          if (0 != couponInfoResult.code) {
-                            var couponInfo_1 = couponInfoResult.data;
-                            Config_1.Config.set("" + that.key + itemId, couponInfo_1, 14400),
-                              that.initCouponInfo(itemId, couponInfo_1, target);
-                          } else that.showQueryEmpty($this);
-                        }),
-                      ];
-
-                    case 2:
-                      _a.sent(), (_a.label = 3);
-
-                    case 3:
-                      return [2];
-                  }
-                });
-              });
-            }),
-            (ListCoupon.prototype.initCouponInfo = function (itemId, couponInfo, target) {
-              var _a,
-                $this = $(target);
-              if (
-                (null === (_a = null == couponInfo ? void 0 : couponInfo.coupons) || void 0 === _a
-                  ? void 0
-                  : _a.length) > 0
-              ) {
-                var coupon = couponInfo.coupons[0];
-                this.showQueryFind($this, coupon.coupon_price);
-              } else this.showQueryEmpty($this);
-              this.showItemUrl(itemId, null == couponInfo ? void 0 : couponInfo.item_url);
-            }),
-            (ListCoupon.prototype.showItemUrl = function (itemId, itemUrl) {
-              void 0 !== itemUrl &&
-                "" !== itemUrl &&
-                Core_1.Core.Click(".PanTools-item-" + itemId, function () {
-                  return Core_1.Core.open(itemUrl), !1;
-                });
-            }),
-            (ListCoupon.prototype.showQueryFind = function (selector, couponMoney) {
-              selector.html(
-                '<a target="_blank" class="PanTools-box-info PanTools-box-info-find" title="切换透明度">' +
-                  couponMoney +
-                  "元券</a>"
-              );
-            }),
-            (ListCoupon.prototype.showQueryEmpty = function (selector) {
-              selector.addClass("PanTools-box-info-translucent"),
-                selector.html(
-                  '<a href="javascript:void(0);" class="PanTools-box-info PanTools-box-info-empty" title="切换透明度">暂无优惠</a>'
-                );
-            }),
-            ListCoupon
-          );
-        })(AppBase_1.AppBase);
-      exports.ListCoupon = ListCoupon;
-    },
-    function (module, exports, __webpack_require__) {
-      "use strict";
-      Object.defineProperty(exports, "__esModule", {
-        value: !0,
-      }),
-        (exports.Tao = void 0);
-      var Tao = (function () {
-        function Tao() {}
-        return (
-          (Tao.isVailidItemId = function (itemId) {
-            if (!itemId) return !1;
-            var itemIdInt = parseInt(itemId);
-            return itemIdInt.toString() == itemId && itemIdInt > 1e4;
-          }),
-          (Tao.isValidTaoId = function (itemId) {
-            return (
-              !!itemId &&
-              (!!Tao.isNumber(itemId) ||
-                !(itemId.indexOf("http") >= 0) ||
-                !(!this.isTaoBaoDetailPage(itemId) && !itemId.includes("//detail.ju.taobao.com/home.htm")))
-            );
-          }),
-          (Tao.isTaoBaoDetailPage = function (url) {
-            return (
-              url.includes("//item.taobao.com/item.htm") ||
-              url.includes("//detail.tmall.com/item.htm") ||
-              url.includes("//chaoshi.detail.tmall.com/item.htm") ||
-              url.includes("//detail.tmall.hk/hk/item.htm")
-            );
-          }),
-          (Tao.isNumber = function (a) {
-            return !Array.isArray(a) && a - parseFloat(a) >= 0;
-          }),
-          Tao
-        );
-      })();
-      exports.Tao = Tao;
-    },
-    function (module, exports, __webpack_require__) {
-      "use strict";
-      var extendStatics,
-        __extends =
-          (this && this.__extends) ||
-          ((extendStatics = function (d, b) {
-            return (
-              (extendStatics =
-                Object.setPrototypeOf ||
-                ({
-                  __proto__: [],
-                } instanceof Array &&
-                  function (d, b) {
-                    d.__proto__ = b;
-                  }) ||
-                function (d, b) {
-                  for (var p in b) b.hasOwnProperty(p) && (d[p] = b[p]);
-                }),
-              extendStatics(d, b)
-            );
-          }),
-          function (d, b) {
-            function __() {
-              this.constructor = d;
-            }
-            extendStatics(d, b),
-              (d.prototype = null === b ? Object.create(b) : ((__.prototype = b.prototype), new __()));
-          });
-      Object.defineProperty(exports, "__esModule", {
-        value: !0,
-      }),
-        (exports.MovieParse = void 0);
-      var AppBase_1 = __webpack_require__(3),
-        SiteEnum_1 = __webpack_require__(1),
-        Core_1 = __webpack_require__(2),
-        Url_1 = __webpack_require__(9),
-        Menu_1 = __webpack_require__(46),
-        MovieParse = (function (_super) {
-          function MovieParse() {
-            var _this = _super.call(this) || this;
-            return (
-              (_this.appName = "Movie"),
-              (_this.rules = new Map([
-                [SiteEnum_1.SiteEnum.IQiYi, /iqiyi|iq\.com/i],
-                [SiteEnum_1.SiteEnum.YouKu, /youku\.com/i],
-                [SiteEnum_1.SiteEnum.LeShi, /\.le\.com/i],
-                [SiteEnum_1.SiteEnum.Tencent_V, /v\.qq/i],
-                [SiteEnum_1.SiteEnum.TuDou, /tudou\.com/i],
-                [SiteEnum_1.SiteEnum.MangGuo, /mgtv\.com/i],
-                [SiteEnum_1.SiteEnum.SoHu, /sohu\.com/i],
-                [SiteEnum_1.SiteEnum.PPTV, /pptv\.com/i],
-                [SiteEnum_1.SiteEnum.BiliBili, /bilibili\.com\/bangumi/i],
-                [SiteEnum_1.SiteEnum.Shuma, /tv\.shuma\.ink/i],
-              ])),
-              (_this._unique = !1),
-              _this
-            );
-          }
-          return (
-            __extends(MovieParse, _super),
-            (MovieParse.prototype.loader = function () {}),
-            (MovieParse.prototype.run = function () {
-              if (this.site === SiteEnum_1.SiteEnum.Shuma) this.InitPlayer();
-              else
-                Core_1.Core.inIframe() ||
-                  Menu_1.Menu.Init([
-                    {
-                      itemType: Menu_1.MenuItemType.Func,
-                      title: "Vip",
-                      tip: "Vip视频解析",
-                      callback: function () {
-                        Core_1.Core.open(
-                          "http://tv.shuma.ink?url=" +
-                            encodeURIComponent(Core_1.Core.currentUrl()).replace("iq.com", "iqiyi.com")
-                        );
-                      },
-                    },
-                  ]);
-            }),
-            (MovieParse.prototype.InitPlayer = function () {
-              var url = Url_1.Url.get("url");
-              url &&
-                ((url = decodeURIComponent(url)),
-                $("#url").val(url),
-                /bilibili\.com\/bangumi/i.test(url) && $($("#jk").find("option")[4]).attr("selected", !0)),
-                unsafeWindow.window.play && url && unsafeWindow.window.play();
-            }),
-            MovieParse
-          );
-        })(AppBase_1.AppBase);
-      exports.MovieParse = MovieParse;
-    },
-    function (module, exports, __webpack_require__) {
-      "use strict";
       Object.defineProperty(exports, "__esModule", {
         value: !0,
       }),
@@ -7334,306 +6686,6 @@ var responseErrorMsg = `<p>扫描图片二维码，点击<b>“16位密码”</b
       __webpack_exports__.default =
         _node_modules_css_loader_dist_cjs_js_Menu_css__WEBPACK_IMPORTED_MODULE_1___default.a.locals || {};
     },
-    function (module, exports, __webpack_require__) {
-      "use strict";
-      var extendStatics,
-        __extends =
-          (this && this.__extends) ||
-          ((extendStatics = function (d, b) {
-            return (
-              (extendStatics =
-                Object.setPrototypeOf ||
-                ({
-                  __proto__: [],
-                } instanceof Array &&
-                  function (d, b) {
-                    d.__proto__ = b;
-                  }) ||
-                function (d, b) {
-                  for (var p in b) b.hasOwnProperty(p) && (d[p] = b[p]);
-                }),
-              extendStatics(d, b)
-            );
-          }),
-          function (d, b) {
-            function __() {
-              this.constructor = d;
-            }
-            extendStatics(d, b),
-              (d.prototype = null === b ? Object.create(b) : ((__.prototype = b.prototype), new __()));
-          }),
-        __awaiter =
-          (this && this.__awaiter) ||
-          function (thisArg, _arguments, P, generator) {
-            return new (P || (P = Promise))(function (resolve, reject) {
-              function fulfilled(value) {
-                try {
-                  step(generator.next(value));
-                } catch (e) {
-                  reject(e);
-                }
-              }
-              function rejected(value) {
-                try {
-                  step(generator.throw(value));
-                } catch (e) {
-                  reject(e);
-                }
-              }
-              function step(result) {
-                result.done
-                  ? resolve(result.value)
-                  : (function adopt(value) {
-                      return value instanceof P
-                        ? value
-                        : new P(function (resolve) {
-                            resolve(value);
-                          });
-                    })(result.value).then(fulfilled, rejected);
-              }
-              step((generator = generator.apply(thisArg, _arguments || [])).next());
-            });
-          },
-        __generator =
-          (this && this.__generator) ||
-          function (thisArg, body) {
-            var f,
-              y,
-              t,
-              g,
-              _ = {
-                label: 0,
-                sent: function () {
-                  if (1 & t[0]) throw t[1];
-                  return t[1];
-                },
-                trys: [],
-                ops: [],
-              };
-            return (
-              (g = {
-                next: verb(0),
-                throw: verb(1),
-                return: verb(2),
-              }),
-              "function" == typeof Symbol &&
-                (g[Symbol.iterator] = function () {
-                  return this;
-                }),
-              g
-            );
-            function verb(n) {
-              return function (v) {
-                return (function step(op) {
-                  if (f) throw new TypeError("Generator is already executing.");
-                  for (; _; )
-                    try {
-                      if (
-                        ((f = 1),
-                        y &&
-                          (t = 2 & op[0] ? y.return : op[0] ? y.throw || ((t = y.return) && t.call(y), 0) : y.next) &&
-                          !(t = t.call(y, op[1])).done)
-                      )
-                        return t;
-                      switch (((y = 0), t && (op = [2 & op[0], t.value]), op[0])) {
-                        case 0:
-                        case 1:
-                          t = op;
-                          break;
-
-                        case 4:
-                          return (
-                            _.label++,
-                            {
-                              value: op[1],
-                              done: !1,
-                            }
-                          );
-
-                        case 5:
-                          _.label++, (y = op[1]), (op = [0]);
-                          continue;
-
-                        case 7:
-                          (op = _.ops.pop()), _.trys.pop();
-                          continue;
-
-                        default:
-                          if (!((t = _.trys), (t = t.length > 0 && t[t.length - 1]) || (6 !== op[0] && 2 !== op[0]))) {
-                            _ = 0;
-                            continue;
-                          }
-                          if (3 === op[0] && (!t || (op[1] > t[0] && op[1] < t[3]))) {
-                            _.label = op[1];
-                            break;
-                          }
-                          if (6 === op[0] && _.label < t[1]) {
-                            (_.label = t[1]), (t = op);
-                            break;
-                          }
-                          if (t && _.label < t[2]) {
-                            (_.label = t[2]), _.ops.push(op);
-                            break;
-                          }
-                          t[2] && _.ops.pop(), _.trys.pop();
-                          continue;
-                      }
-                      op = body.call(thisArg, _);
-                    } catch (e) {
-                      (op = [6, e]), (y = 0);
-                    } finally {
-                      f = t = 0;
-                    }
-                  if (5 & op[0]) throw op[1];
-                  return {
-                    value: op[0] ? op[1] : void 0,
-                    done: !0,
-                  };
-                })([n, v]);
-              };
-            }
-          };
-      Object.defineProperty(exports, "__esModule", {
-        value: !0,
-      }),
-        (exports.DetailCoupon = void 0);
-      var AppBase_1 = __webpack_require__(3),
-        SiteEnum_1 = __webpack_require__(1),
-        CouponRoutes_1 = __webpack_require__(11),
-        Url_1 = __webpack_require__(9),
-        ItemType_1 = __webpack_require__(27),
-        Config_1 = __webpack_require__(5);
-      __webpack_require__(49);
-      var Core_1 = __webpack_require__(2),
-        Constant_1 = __webpack_require__(8),
-        DetailCoupon = (function (_super) {
-          function DetailCoupon() {
-            var _this = _super.call(this) || this;
-            return (
-              (_this.appName = "DetailCoupon"),
-              (_this.rules = new Map([
-                [SiteEnum_1.SiteEnum.TaoBao, /taobao\.com/i],
-                [SiteEnum_1.SiteEnum.TMall, /detail\.tmall\.com|hk\/item.htm/i],
-                [
-                  SiteEnum_1.SiteEnum.JingDong,
-                  /(item|npcitem|pcitem|pro|pro\.m|story\.m|prodev\.m|prodev)\.(jd|yiyaojd)\.(com|hk)\/.*\.htm/i,
-                ],
-              ])),
-              (_this.key = "list_coupon"),
-              (_this._unique = !1),
-              _this
-            );
-          }
-          return (
-            __extends(DetailCoupon, _super),
-            (DetailCoupon.prototype.loader = function () {}),
-            (DetailCoupon.prototype.run = function () {
-              var _a, _b;
-              switch (this.site) {
-                case SiteEnum_1.SiteEnum.TaoBao:
-                  (this.selector = "ul.tb-meta"),
-                    (this.id = Url_1.Url.get("id")),
-                    (this.type = ItemType_1.ItemType.TaoBao);
-                  break;
-
-                case SiteEnum_1.SiteEnum.TMall:
-                  (this.selector = ".tm-fcs-panel"),
-                    (this.id = Url_1.Url.get("id")),
-                    (this.type = ItemType_1.ItemType.TaoBao);
-                  break;
-
-                case SiteEnum_1.SiteEnum.JingDong:
-                  (this.selector = ".summary-top"),
-                    (this.id =
-                      null ===
-                        (_b = null === (_a = unsafeWindow.window.pageConfig) || void 0 === _a ? void 0 : _a.product) ||
-                      void 0 === _b
-                        ? void 0
-                        : _b.skuid),
-                    (this.type = ItemType_1.ItemType.JingDong);
-              }
-              this.Init();
-            }),
-            (DetailCoupon.prototype.Init = function () {
-              return __awaiter(this, void 0, void 0, function () {
-                var that,
-                  couponInfo,
-                  _this = this;
-                return __generator(this, function (_a) {
-                  switch (_a.label) {
-                    case 0:
-                      return (
-                        (that = this),
-                        this.id
-                          ? (couponInfo = Config_1.Config.get("" + this.key + this.id))
-                            ? (this.initConpon(couponInfo), [3, 3])
-                            : [3, 1]
-                          : [3, 4]
-                      );
-
-                    case 1:
-                      return [
-                        4,
-                        CouponRoutes_1.CouponRoutes.couponQuery(this.id, this.type).then(function (couponInfoResult) {
-                          if (0 != couponInfoResult.code) {
-                            var couponInfo_1 = couponInfoResult.data;
-                            Config_1.Config.set("" + that.key + that.id, couponInfo_1, 14400);
-                          }
-                          _this.initConpon(couponInfoResult.data);
-                        }),
-                      ];
-
-                    case 2:
-                      _a.sent(), (_a.label = 3);
-
-                    case 3:
-                      return [3, 5];
-
-                    case 4:
-                      this.initConpon(!1), (_a.label = 5);
-
-                    case 5:
-                      return [2];
-                  }
-                });
-              });
-            }),
-            (DetailCoupon.prototype.initConpon = function (coupons) {
-              var _a,
-                _b,
-                coupon = !1;
-              if (
-                ((null === (_b = null === (_a = coupons) || void 0 === _a ? void 0 : _a.coupons) || void 0 === _b
-                  ? void 0
-                  : _b.length) > 0 && (coupon = coupons.coupons[0]),
-                coupons.union_url && Config_1.Config.getLocalStorage(Constant_1.Constant.CouponJumpFlag, !0))
-              ) {
-                var k = Constant_1.Constant.CouponJump + "_" + this.id;
-                0 == Config_1.Config.get(k, 0) &&
-                  (Config_1.Config.set(k, 1, 300), (unsafeWindow.window.location.href = coupons.union_url));
-              }
-              $(this.selector).after($(DetailCoupon.couponBody(coupon))),
-                coupon &&
-                  $("#coupon-link").click(function () {
-                    Core_1.Core.open(coupon.coupon_link);
-                  });
-            }),
-            (DetailCoupon.couponBody = function (data) {
-              return data
-                ? '<div class="PanTools-Coupon-Wrap"><div class="coupon"><div class="coupon-info"><div class="coupon-desc">优惠券 ' +
-                    data.coupon_price +
-                    '元</div><div class="coupon-info2">' +
-                    data.coupon_info +
-                    '</div></div><a class="coupon-get" id="coupon-link" href="javascript:void">立即领取</a></div><div class="coupon-time">优惠券有效期：' +
-                    data.coupon_end_time +
-                    "</div>"
-                : '<div class="PanTools-Coupon-Wrap"><div class="coupon"><div class="coupon-info"><div class="coupon-desc">未查询到优惠券</div><div class="coupon-info2">';
-            }),
-            DetailCoupon
-          );
-        })(AppBase_1.AppBase);
-      exports.DetailCoupon = DetailCoupon;
-    },
     function (module, __webpack_exports__, __webpack_require__) {
       "use strict";
       __webpack_require__.r(__webpack_exports__);
@@ -7685,515 +6737,6 @@ var responseErrorMsg = `<p>扫描图片二维码，点击<b>“16位密码”</b
             }
             extendStatics(d, b),
               (d.prototype = null === b ? Object.create(b) : ((__.prototype = b.prototype), new __()));
-          }),
-        __importDefault =
-          (this && this.__importDefault) ||
-          function (mod) {
-            return mod && mod.__esModule
-              ? mod
-              : {
-                  default: mod,
-                };
-          };
-      Object.defineProperty(exports, "__esModule", {
-        value: !0,
-      }),
-        (exports.Gwd = void 0);
-      var AppBase_1 = __webpack_require__(3),
-        SiteEnum_1 = __webpack_require__(1);
-      __webpack_require__(51);
-      var CouponRoutes_1 = __webpack_require__(11),
-        Core_1 = __webpack_require__(2),
-        sweetalert2_1 = __importDefault(__webpack_require__(19)),
-        Logger_1 = __webpack_require__(4),
-        Gwd_1 = __webpack_require__(52),
-        BrowerType_1 = __webpack_require__(20),
-        Gwd = (function (_super) {
-          function Gwd() {
-            var _this = (null !== _super && _super.apply(this, arguments)) || this;
-            return (
-              (_this.appName = "GWD"),
-              (_this.rules = new Map([
-                [SiteEnum_1.SiteEnum.TMall, /detail.tmall.com\/item.htm/i],
-                [SiteEnum_1.SiteEnum.TaoBao, /item.taobao.com/i],
-                [SiteEnum_1.SiteEnum.JingDong, /item.jd.(com|hk)\/[0-9]*.html/i],
-                [SiteEnum_1.SiteEnum.SuNing, /product.suning.com/i],
-                [SiteEnum_1.SiteEnum.Vp, /detail.vip.com/i],
-              ])),
-              _this
-            );
-          }
-          return (
-            __extends(Gwd, _super),
-            (Gwd.prototype.loader = function () {}),
-            (Gwd.prototype.run = function () {
-              var _a,
-                _this = this;
-              switch (this.site) {
-                case SiteEnum_1.SiteEnum.TaoBao:
-                case SiteEnum_1.SiteEnum.TMall:
-                  this.selector = ["#J_DetailMeta", "#detail"];
-                  break;
-
-                case SiteEnum_1.SiteEnum.JingDong:
-                  this.selector = [".product-intro"];
-                  break;
-
-                case SiteEnum_1.SiteEnum.SuNing:
-                  this.selector = [".proinfo-container"];
-                  break;
-
-                case SiteEnum_1.SiteEnum.Vp:
-                  this.selector = [".FW-product.clearfix"];
-                  break;
-
-                default:
-                  this.selector = [];
-              }
-              (null === (_a = this.selector) || void 0 === _a ? void 0 : _a.length) > 0 &&
-                this.initHtml().then(function (res) {
-                  res && ($("#PanTools-outside").show(), _this.initHistoryData());
-                });
-            }),
-            (Gwd.prototype.initHtml = function () {
-              var that = this;
-              return new Promise(function (resolve) {
-                var res = !1,
-                  selector = "";
-                that.selector.forEach(function (item) {
-                  $(item).length && ((res = !0), (selector = item));
-                }),
-                  res ? ($(selector).append(that.getHistoryHtml()), resolve(!0)) : setTimeout(that.initHtml, 2e3);
-              });
-            }),
-            (Gwd.prototype.getHistoryHtml = function () {
-              return '<div id="PanTools-outside"><div class="PanTools-outside-coupons"><div class="PanTools-outside-coupons-qrcode"><img id="PanTools-outside-coupons-qrcode-img" width="200px" alt="扫码入群享受更多福利" src="https://pan.shuma.ink/img/code333.png"/></div><div class="PanTools-outside-coupons-title">                            <a class="vip-plugin-outside-coupons-button quan-none" style="display: none" href="javascript:void(0)">扫码入群享受更多福利</a></div><div class="PanTools-outside-coupons-action"></div></div><div id="PanTools-outside-history" class="PanTools-outside-history"><div class="PanTools-outside-chart-container"></div><p class="PanTools-outside-history-tip"></p></div>    </div>';
-            }),
-            (Gwd.prototype.initHistoryData = function () {
-              var _this = this;
-              $(".PanTools-outside-history-tip").html("历史价格查询中"),
-                CouponRoutes_1.CouponRoutes.historyQuery(Core_1.Core.url).then(function (data) {
-                  if ((Logger_1.Logger.debug(data), "price_status" in data))
-                    $(".PanTools-outside-chart-container").html(
-                      '<div id="PanTools-outside-chart-container-line"></div>'
-                    ),
-                      echarts
-                        .init(document.getElementById("PanTools-outside-chart-container-line"))
-                        .setOption(_this.getChartOption(data)),
-                      $(".PanTools-outside-history-tip").html("");
-                  else if ("is_ban" in data && 1 == data.is_ban) {
-                    sweetalert2_1.default
-                      .fire({
-                        icon: "info",
-                        html: "历史价格查询异常,是否打开验证页面进行验证?",
-                        showCloseButton: !0,
-                        showCancelButton: !0,
-                        focusConfirm: !1,
-                        confirmButtonText: "好的",
-                        cancelButtonText: "暂时先不验证",
-                      })
-                      .then(function (res) {
-                        res.isConfirmed &&
-                          Core_1.Core.open(
-                            "https://browser.gwdang.com/slider/verify.html?fromUrl=" +
-                              encodeURIComponent(Core_1.Core.url)
-                          ),
-                          sweetalert2_1.default.close(res);
-                      });
-                    var browser = Core_1.Core.getBrowser();
-                    if (
-                      (Logger_1.Logger.debug(browser),
-                      browser == BrowerType_1.BrowerType.Edge || browser == BrowerType_1.BrowerType.Edg)
-                    ) {
-                      "99999999999" != $(".swal2-container").css("z-index") &&
-                        $(".swal2-container").css("z-index", "99999999999");
-                    }
-                  }
-                });
-            }),
-            (Gwd.prototype.getChartOption = function (data) {
-              var _a,
-                _b,
-                chartOption,
-                analysisTxt = data.analysis.tip,
-                min = data.analysis.promo_days[data.analysis.promo_days.length - 1],
-                text = analysisTxt + "：{red|￥" + min.price + "} ( {red|" + min.date + "} )",
-                maxData = new Gwd_1.PromoInfo(),
-                minData = new Gwd_1.PromoInfo();
-              (minData.price = Number.MAX_SAFE_INTEGER),
-                (minData.humanPrice = Number.MAX_SAFE_INTEGER),
-                (maxData.humanPrice = Number.MIN_SAFE_INTEGER);
-              chartOption = {
-                title: {
-                  left: "center",
-                  subtext: text,
-                  subtextStyle: {
-                    color: "#000",
-                    rich: {
-                      red: {
-                        color: "red",
-                      },
-                    },
-                  },
-                },
-                tooltip: {
-                  trigger: "axis",
-                  axisPointer: {
-                    type: "cross",
-                  },
-                  formatter: function (params) {
-                    params = params[0];
-                    var date = new Date(parseInt(params.name)),
-                      year = date.getFullYear(),
-                      month = date.getMonth() + 1,
-                      day = date.getDate(),
-                      monthStr = month.toString(),
-                      dayStr = day.toString();
-                    return (
-                      month < 10 && (monthStr = "0" + month),
-                      day < 10 && (dayStr = "0" + day),
-                      "日期：" +
-                        year +
-                        "-" +
-                        monthStr +
-                        "-" +
-                        dayStr +
-                        "<br/>价格：￥" +
-                        params.value[1].toFixed(2) +
-                        ("" == params.value[2] ? "" : "<br/>" + params.value[2])
-                    );
-                  },
-                },
-                grid: {
-                  left: 0,
-                  right: 20,
-                  top: 50,
-                  bottom: 10,
-                  containLabel: !0,
-                },
-                xAxis: {
-                  type: "time",
-                },
-                yAxis: {
-                  type: "value",
-                },
-                series: [
-                  {
-                    type: "line",
-                    step: "end",
-                    data: (function (data) {
-                      var _a,
-                        l = [];
-                      if (data.store.length > 0) {
-                        var storeData = data.store[0];
-                        data.store.length > 1 && (storeData = data.store[1]);
-                        var couponsMap_1 = {};
-                        (null === (_a = data.promo) || void 0 === _a ? void 0 : _a.length) > 0 &&
-                          data.promo.forEach(function (v) {
-                            couponsMap_1.hasOwnProperty(1e3 * v.time) || (couponsMap_1[1e3 * v.time] = v);
-                          });
-                        var now_1 = storeData.all_line_begin_time;
-                        storeData.all_line.forEach(function (v) {
-                          v > maxData.humanPrice && ((maxData.humanPrice = v), (maxData.time = now_1 / 1e3)),
-                            v < minData.humanPrice && ((minData.humanPrice = v), (minData.time = now_1 / 1e3));
-                          var promo = new Gwd_1.PromoInfo();
-                          (promo.msg = new Gwd_1.MsgInfo()),
-                            couponsMap_1.hasOwnProperty(now_1) &&
-                              (Logger_1.Logger.debug("yes"), (promo = couponsMap_1[now_1]));
-                          var p = {
-                            name: now_1,
-                            value: [
-                              now_1,
-                              v,
-                              couponsMap_1.hasOwnProperty(now_1)
-                                ? promo.msg.coupon
-                                  ? promo.msg.promotion
-                                  : promo.msg.coupon
-                                : "",
-                            ],
-                          };
-                          l.push(p), (now_1 += 864e5);
-                        }),
-                          Logger_1.Logger.debug(couponsMap_1);
-                      }
-                      return Logger_1.Logger.debug(maxData), Logger_1.Logger.debug(minData), l;
-                    })(data),
-                    showSymbol: !1,
-                    symbolSize: 3,
-                    lineStyle: {
-                      width: 1.5,
-                      color: "#ff0036",
-                    },
-                  },
-                ],
-              };
-              chartOption.yAxis = {
-                min: 10 * Math.floor((0.9 * minData.humanPrice) / 10),
-                max: 10 * Math.ceil((1.1 * maxData.humanPrice) / 10),
-              };
-              var line = null === (_a = chartOption.series) || void 0 === _a ? void 0 : _a.pop();
-              return (
-                (line.markPoint = {
-                  data: [
-                    {
-                      value: minData.humanPrice,
-                      coord: [1e3 * minData.time, minData.humanPrice],
-                      name: "最小值",
-                      itemStyle: {
-                        color: "green",
-                      },
-                    },
-                    {
-                      value: maxData.humanPrice,
-                      coord: [1e3 * maxData.time, maxData.humanPrice],
-                      name: "最大值",
-                      itemStyle: {
-                        color: "red",
-                      },
-                    },
-                  ],
-                }),
-                null === (_b = chartOption.series) || void 0 === _b || _b.push(line),
-                (chartOption.dataZoom = [
-                  {
-                    type: "inside",
-                    start: 0,
-                    end: 100,
-                  },
-                ]),
-                chartOption
-              );
-            }),
-            Gwd
-          );
-        })(AppBase_1.AppBase);
-      exports.Gwd = Gwd;
-    },
-    function (module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-      __webpack_require__.r(__webpack_exports__);
-      var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ =
-          __webpack_require__(0),
-        _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default =
-          __webpack_require__.n(
-            _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__
-          ),
-        _node_modules_css_loader_dist_cjs_js_GWD_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(17),
-        _node_modules_css_loader_dist_cjs_js_GWD_css__WEBPACK_IMPORTED_MODULE_1___default = __webpack_require__.n(
-          _node_modules_css_loader_dist_cjs_js_GWD_css__WEBPACK_IMPORTED_MODULE_1__
-        ),
-        options = {
-          insert: "head",
-          singleton: !1,
-        };
-      _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(
-        _node_modules_css_loader_dist_cjs_js_GWD_css__WEBPACK_IMPORTED_MODULE_1___default.a,
-        options
-      );
-      __webpack_exports__.default =
-        _node_modules_css_loader_dist_cjs_js_GWD_css__WEBPACK_IMPORTED_MODULE_1___default.a.locals || {};
-    },
-    function (module, exports, __webpack_require__) {
-      "use strict";
-      Object.defineProperty(exports, "__esModule", {
-        value: !0,
-      }),
-        (exports.StoreInfo =
-          exports.AnalysisInfo =
-          exports.PromoDaysInfo =
-          exports.PromoInfo =
-          exports.MsgInfo =
-          exports.GwdAction =
-          exports.GwdModel =
-            void 0);
-      var GwdModel = function GwdModel() {};
-      exports.GwdModel = GwdModel;
-      var GwdAction = function GwdAction() {};
-      exports.GwdAction = GwdAction;
-      var MsgInfo = function MsgInfo() {};
-      exports.MsgInfo = MsgInfo;
-      var PromoInfo = function PromoInfo() {
-        (this.price = 0), (this.time = 0);
-      };
-      exports.PromoInfo = PromoInfo;
-      var PromoDaysInfo = function PromoDaysInfo() {};
-      exports.PromoDaysInfo = PromoDaysInfo;
-      var AnalysisInfo = function AnalysisInfo() {};
-      exports.AnalysisInfo = AnalysisInfo;
-      var StoreInfo = function StoreInfo() {};
-      exports.StoreInfo = StoreInfo;
-    },
-    function (module, exports, __webpack_require__) {
-      "use strict";
-      var extendStatics,
-        __extends =
-          (this && this.__extends) ||
-          ((extendStatics = function (d, b) {
-            return (
-              (extendStatics =
-                Object.setPrototypeOf ||
-                ({
-                  __proto__: [],
-                } instanceof Array &&
-                  function (d, b) {
-                    d.__proto__ = b;
-                  }) ||
-                function (d, b) {
-                  for (var p in b) b.hasOwnProperty(p) && (d[p] = b[p]);
-                }),
-              extendStatics(d, b)
-            );
-          }),
-          function (d, b) {
-            function __() {
-              this.constructor = d;
-            }
-            extendStatics(d, b),
-              (d.prototype = null === b ? Object.create(b) : ((__.prototype = b.prototype), new __()));
-          });
-      Object.defineProperty(exports, "__esModule", {
-        value: !0,
-      }),
-        (exports.GwdClean = void 0);
-      var AppBase_1 = __webpack_require__(3),
-        SiteEnum_1 = __webpack_require__(1),
-        Core_1 = __webpack_require__(2),
-        GwdClean = (function (_super) {
-          function GwdClean() {
-            var _this = (null !== _super && _super.apply(this, arguments)) || this;
-            return (
-              (_this.appName = "Gwd_Clean"),
-              (_this.rules = new Map([[SiteEnum_1.SiteEnum.Gwd, /browser\.gwdang\.com\/slider\/verify/i]])),
-              _this
-            );
-          }
-          return (
-            __extends(GwdClean, _super),
-            (GwdClean.prototype.loader = function () {}),
-            (GwdClean.prototype.run = function () {
-              $("title").text("网盘辅助脚本-历史价格接口验证"),
-                $(".texts").remove(),
-                $(".header_new1").remove(),
-                Core_1.Core.autoLazyload(
-                  function () {
-                    return $(".slider_tips").length > 0;
-                  },
-                  function () {
-                    $(".slider_tips").text("PanTools");
-                  },
-                  0.5
-                );
-            }),
-            (GwdClean.prototype.getNav = function () {
-              return '\n<ul class="zoom login_box fr ml-30"><li><a href="/app/extension?from=verify" target="_blank">下载比价工具</a></li>\n</ul>\n<ul class="nav_new zoom fr">    <li><a href="/promotion/zhi" target="_blank">值得买</a></li> <li><a href="/crc64/promotion/price" target="_blank">历史最低价</a></li><li><a href="/promotion/coupon" target="_blank">薅羊毛</a></li>\n</ul>      ';
-            }),
-            GwdClean
-          );
-        })(AppBase_1.AppBase);
-      exports.GwdClean = GwdClean;
-    },
-    function (module, exports, __webpack_require__) {
-      "use strict";
-      var extendStatics,
-        __extends =
-          (this && this.__extends) ||
-          ((extendStatics = function (d, b) {
-            return (
-              (extendStatics =
-                Object.setPrototypeOf ||
-                ({
-                  __proto__: [],
-                } instanceof Array &&
-                  function (d, b) {
-                    d.__proto__ = b;
-                  }) ||
-                function (d, b) {
-                  for (var p in b) b.hasOwnProperty(p) && (d[p] = b[p]);
-                }),
-              extendStatics(d, b)
-            );
-          }),
-          function (d, b) {
-            function __() {
-              this.constructor = d;
-            }
-            extendStatics(d, b),
-              (d.prototype = null === b ? Object.create(b) : ((__.prototype = b.prototype), new __()));
-          });
-      Object.defineProperty(exports, "__esModule", {
-        value: !0,
-      }),
-        (exports.DownCleaner = void 0);
-      var AppBase_1 = __webpack_require__(3),
-        SiteEnum_1 = __webpack_require__(1),
-        DownCleaner = (function (_super) {
-          function DownCleaner() {
-            var _this = (null !== _super && _super.apply(this, arguments)) || this;
-            return (
-              (_this.appName = "DownCleaner"),
-              (_this.rules = new Map([
-                [SiteEnum_1.SiteEnum.Pc6, /www\.pc6\.com\/.*\/.*\.html/i],
-                [SiteEnum_1.SiteEnum.DuoTe, /www\.duote\.com\/.*\/.*\.html/i],
-                [SiteEnum_1.SiteEnum.DangXia, /www\.downxia\.com\/.*\/.*\.html/i],
-                [SiteEnum_1.SiteEnum.DongPo, /www.uzzf.com\/.*\/.*\.html/i],
-                [SiteEnum_1.SiteEnum.HuaJun, /www\.onlinedown\.net\/soft\/.*\.htm/i],
-                [SiteEnum_1.SiteEnum.TaiPingYang, /dl|www\.pconline\.com\.cn\/download\/.*\.html/i],
-                [SiteEnum_1.SiteEnum.XiXiSoft, /.cr173\.com\/soft|game|xixi|android|mac|qudong|aztv\/.*\.html/i],
-              ])),
-              (_this.selectorRules = new Map([
-                [SiteEnum_1.SiteEnum.Pc6, [".downnow", "#gaosuxiazai", ".ul_Address h3:first"]],
-                [SiteEnum_1.SiteEnum.DuoTe, ["#highDown", ".downFastListBox"]],
-                [SiteEnum_1.SiteEnum.DangXia, [".gaosu_down_div", ".bendown", "h3:contains(高速下载)"]],
-                [SiteEnum_1.SiteEnum.DongPo, [".f-uzzf-down", ".topdown"]],
-                [SiteEnum_1.SiteEnum.XiXiSoft, [".downnowgaosu", "[data=viewAds]", "[data=viewAds1]"]],
-                [SiteEnum_1.SiteEnum.HuaJun, [".gaosu", ".spdown-btn a", "h4:contains(高速下载)"]],
-                [SiteEnum_1.SiteEnum.TaiPingYang, ["#JhsBtn", ".bzxz2", ".bzxz", ".bzDowm1", "#ad790413"]],
-              ])),
-              _this
-            );
-          }
-          return (
-            __extends(DownCleaner, _super),
-            (DownCleaner.prototype.loader = function () {}),
-            (DownCleaner.prototype.run = function () {
-              var rules = this.selectorRules.get(this.site);
-              rules &&
-                rules.forEach(function (e) {
-                  $(e).remove();
-                });
-            }),
-            DownCleaner
-          );
-        })(AppBase_1.AppBase);
-      exports.DownCleaner = DownCleaner;
-    },
-    function (module, exports, __webpack_require__) {
-      "use strict";
-      var extendStatics,
-        __extends =
-          (this && this.__extends) ||
-          ((extendStatics = function (d, b) {
-            return (
-              (extendStatics =
-                Object.setPrototypeOf ||
-                ({
-                  __proto__: [],
-                } instanceof Array &&
-                  function (d, b) {
-                    d.__proto__ = b;
-                  }) ||
-                function (d, b) {
-                  for (var p in b) b.hasOwnProperty(p) && (d[p] = b[p]);
-                }),
-              extendStatics(d, b)
-            );
-          }),
-          function (d, b) {
-            function __() {
-              this.constructor = d;
-            }
-            extendStatics(d, b),
-              (d.prototype = null === b ? Object.create(b) : ((__.prototype = b.prototype), new __()));
           });
       Object.defineProperty(exports, "__esModule", {
         value: !0,
@@ -8202,7 +6745,6 @@ var responseErrorMsg = `<p>扫描图片二维码，点击<b>“16位密码”</b
       var AppBase_1 = __webpack_require__(3),
         SiteEnum_1 = __webpack_require__(1),
         Config_1 = __webpack_require__(5),
-        AriaConfig_1 = __webpack_require__(56),
         Constant_1 = __webpack_require__(8),
         Alert_1 = __webpack_require__(7),
         Options = (function (_super) {
@@ -8218,53 +6760,17 @@ var responseErrorMsg = `<p>扫描图片二维码，点击<b>“16位密码”</b
             __extends(Options, _super),
             (Options.prototype.loader = function () {}),
             (Options.prototype.run = function () {
-              Options.systemInit(), Options.ariaInit();
+              Options.systemInit();
             }),
             (Options.systemInit = function () {
               $("#panparse-warning").hide(),
                 $("#panparse-version").text(srcVersion),
                 $("#panparse-title").text("[数码小站]超级SVIP多功能工具箱");
             }),
-            (Options.ariaInit = function () {
-              Options.ariaShow(),
-                $("#ariaSetting").submit(function (e) {
-                  e.preventDefault(), Options.ariaSave();
-                }),
-                $("#ariaReset").click(function () {
-                  $("#rpcUrl").val(""), $("#rpcToken").val(""), $("#rpcDir").val(""), Alert_1.Alert.info("重置成功");
-                });
-            }),
-            (Options.ariaShow = function () {
-              var _ariaSetting = Config_1.Config.get(Constant_1.Constant.AriaConfig, {
-                rpcUrl: "http://localhost:6800/jsonrpc",
-                rpcDic: "D:\\Aria",
-                rpcToken: "",
-              });
-              $("#rpcUrl").val(null == _ariaSetting ? void 0 : _ariaSetting.rpcUrl),
-                $("#rpcToken").val(null == _ariaSetting ? void 0 : _ariaSetting.rpcToken),
-                $("#rpcDir").val(null == _ariaSetting ? void 0 : _ariaSetting.rpcDic);
-            }),
-            (Options.ariaSave = function () {
-              var ariaSetting = new AriaConfig_1.AriaConfig();
-              (ariaSetting.rpcUrl = $("#rpcUrl").val()),
-                (ariaSetting.rpcToken = $("#rpcToken").val()),
-                (ariaSetting.rpcDic = $("#rpcDir").val()),
-                Config_1.Config.set(Constant_1.Constant.AriaConfig, ariaSetting),
-                Alert_1.Alert.info("保存成功");
-            }),
             Options
           );
         })(AppBase_1.AppBase);
       exports.Options = Options;
-    },
-    function (module, exports, __webpack_require__) {
-      "use strict";
-      Object.defineProperty(exports, "__esModule", {
-        value: !0,
-      }),
-        (exports.AriaConfig = void 0);
-      var AriaConfig = function AriaConfig() {};
-      exports.AriaConfig = AriaConfig;
     },
   ]);
 });
