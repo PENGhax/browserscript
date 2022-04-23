@@ -1,11 +1,12 @@
 // ==UserScript==
-// @name           数码小站百度网盘直链解析-大鹏小客净化版
-// @description    去广告纯净版。可关注微信公众号大鹏小客获取更多精彩内容。
+// @name           数码小站百度网盘直链解析-净化版
+// @namespace      https://wiki.shuma.ink
+// @description    免SVIP直链解析
 // @license        MIT
-// @version        1.1.7
+// @version        1.1.8
 // @author         大鹏小客
 // @source         https://wiki.shuma.ink
-// @include        *://pan.baidu.com*
+// @match          *://pan.baidu.com/*
 // @require        https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js
 // @require        https://cdn.jsdelivr.net/npm/echarts@5.1.2/dist/echarts.min.js
 // @supportURL     https://wiki.shuma.ink
@@ -23,11 +24,8 @@
 // @connect        baidu.com
 // @connect        localhost
 // @run-at         document-end
-// @antifeature    membership
-// @antifeature    referral-link
 // ==/UserScript==
 
-var srcVersion = "1.3.4";
 !(function webpackUniversalModuleDefinition(root, factory) {
   if ("object" == typeof exports && "object" == typeof module) module.exports = factory();
   else if ("function" == typeof define && define.amd) define([], factory);
@@ -39,6 +37,7 @@ var srcVersion = "1.3.4";
   if (window.location.href.match("https://pan.baidu.com/disk/main") !== null) {
     window.location.replace("https://pan.baidu.com/disk/home?from=newversion&stayAtHome=true");
   }
+
   return (function (modules) {
     var installedModules = {};
     function __webpack_require__(moduleId) {
@@ -733,7 +732,7 @@ var srcVersion = "1.3.4";
               sweetalert2_1.default.fire({
                 toast: !1,
                 allowOutsideClick: !1,
-                confirmButtonText: "✕",
+                confirmButtonText: "X",
                 width: width,
                 title: title,
                 html: html,
@@ -861,8 +860,7 @@ var srcVersion = "1.3.4";
                   : "Mozilla/4.0 (compatible) Greasemonkey"),
                 (head.Accept = "application/atom+xml,application/xml,text/xml"),
                 option.url.indexOf("shuma") > -1 &&
-                  ((head.Author = null !== (_b = "shuma") && void 0 !== _b ? _b : "shuma"),
-                  (head.Version = srcVersion)),
+                  ((head.Author = null !== (_b = "shuma") && void 0 !== _b ? _b : "shuma"), (head.Version = "1.3.4")),
                 option.headers || (option.headers = head);
               try {
                 GM_xmlhttpRequest(option);
@@ -1029,7 +1027,7 @@ var srcVersion = "1.3.4";
     function (module, exports, __webpack_require__) {
       (exports = __webpack_require__(6)(!1)).push([
         module.i,
-        "#pantools-top-outside{display:flex}#pantools-top-left-fileinfo{min-width:520px;margin-bottom:18px;border:#b8daff;background-color:#b8daff;border-radius:5px;padding:12px}#pantools-top-right-qrcode{margin-left:auto;flex:auto}#pantools-top-right-qrcode img{width:90%}#pantools-top-left-fileinfo p{text-align:left;margin:10px 0 0 10px}#pantools-top-left-fileinfo input{box-sizing:border-box;width:90%;transition:border-color .3s,box-shadow .3s;border:1px solid #d9d9d9;border-radius:.1875em;box-shadow:inset 0 1px 1px;color:inherit;font-size:1.125em}#pantools-top-left-fileinfo button{font-size:12px;padding:0 !important;border-radius:18px}#pantools-top-left-fileinfo button:not(:first-child){margin-left:12px}#pantools-bottom-outside div{display:flex;padding-top:5px;justify-content:center}#pantools-bottom-outside button{margin-left:5px;font-size:1em}#pantools-parser{background-color:#3b85e6 !important}#pantools-parser-url{display:none;font-size:12px;border-radius:18px;background-color:#f94d70 !important;padding:10px;text-decoration: none;}#pantools-ua-copy{display:none;background-color:#20c265 !important}#pantools-key-setting{float:right;background-color:#000 !important}.actions-group{display: flex;justify-content: space-between;margin: 12px;}#pantools-top-left-fileinfo table td{text-align:left;padding:4px;}#pantools-top-left-fileinfo table td:first-child{font-weight: bolder;width:80px;}#pantools-top-left-fileinfo table td:last-child{max-width: 500px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}",
+        "#pantools-top-outside {\n    display: flex;\n}\n\n#pantools-top-left-fileinfo {min-width: 480px;background-color:#E0E9E0;border-radius: 5px;padding-bottom: 10px;}#pantools-top-left-fileinfo p {\n    text-align: left;\n    margin: 10px 0 0 10px;\n}\n\n#pantools-top-left-fileinfo input {\n    box-sizing: border-box;\n    width: 90%;\n    transition: border-color .3s, box-shadow .3s;\n    border: 1px solid #d9d9d9;\n    border-radius: .1875em;\n    /*background: inherit;*/\n    box-shadow: inset 0 1px 1px; /*rgb(0 0 0/6%);*/\n    color: inherit;\n    font-size: 1.125em;\n}\n\n#pantools-top-left-fileinfo button {\n    font-size: 1em;\n}",
         "",
       ]),
         (module.exports = exports);
@@ -4182,76 +4180,39 @@ var srcVersion = "1.3.4";
                   currentCode = Config_1.Config.get(PanParse.panCode, ""),
                   currentKey = Config_1.Config.get(PanParse.panKey, ""),
                   flowInfo = Config_1.Config.get(PanParse.flowInfoKey),
-                  box = `
-                  <div id="pantools-top-outside">
-                    <div id="pantools-top-left-fileinfo">
-                      <table style="margin:12px;">
-                        <tbody>
-                          <tr>
-                            <td>文件名称</td>
-                            <td>${file.server_filename}</td>
-                          </tr>
-                          <tr>
-                            <td>MD5校验</td>
-                            <td>${file.md5}</td>
-                          </tr>
-                          <tr>
-                            <td>文件大小</td>
-                            <td>${Common_1.Common.humanSize(file.size)}</td>
-                          </tr>
-                          <tr>
-                            <td>上传时间</td>
-                            <td>${new Date(1e3 * file.server_ctime).toLocaleString()}</td>
-                          </tr>
-                          <tr>
-                            <td>配置卡密</td>
-                            <td>${null != currentKey ? currentKey : "扫码关注微信，发送关键字"}</td>
-                          </tr>
-                          <tr>
-                            <td>剩余流量</td>
-                            <td><b id="pantools-flow-left">${
-                              flowInfo ? Core_1.Core.humanSize(flowInfo.LSize) : 0
-                            }</b></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <div class="actions-group">
-                        <div>
-                          <button id="pantools-parser" class="mdui-btn mdui-color-indigo-700 mdui-ripple">开始解析</button>
-                          <a href="javascript:;" id="pantools-parser-url" class="mdui-btn mdui-color-indigo-700 mdui-ripple">复制下载链接</a>
-                          <button id="pantools-ua-copy" data-clipboard-text="请先解析文件在复制UA" class="mdui-btn mdui-color-indigo-700 mdui-ripple">复制UA</button>
-                        </div>
-                        <button id="pantools-key-setting" class="mdui-btn mdui-color-indigo-700 mdui-ripple">配置卡密</button>
-                      </div>
-                      <hr/>
-                      <div style="display:flex;padding-top:12px;">
-                        <div style="flex: 1;display: flex;flex-direction: column;justify-content: center;align-items: center;">
-                          <div id="pantools-bottom-outside"><span id="pantools-status">准备完成</span></div>
-                          <p id="ua-button-tip" style="display: none; text-align: center">
-                            <b style="color: red">复制UA并配置到下载器中</b>
-                          </p>
-                        </div>
-                        <img alt="扫码关注-大鹏小客微信公众号,发送消息kinh获取卡密" src="https://s1.328888.xyz/2022/04/18/rLvne.jpg" width="270px"/>
-                      </div>
-                    </div>
-                  </div>`;
+                  box =
+                    '\n<div id="pantools-top-outside">\n    <div id="pantools-top-left-fileinfo">\n        <p>文件名称:<b>' +
+                    file.server_filename +
+                    "</b></p>\n        <p>MD5校验:<b>" +
+                    file.md5 +
+                    "</b></p>\n        <p>文件体积:<b>" +
+                    Common_1.Common.humanSize(file.size) +
+                    "</b></p>\n        <p>上传时间:<b>" +
+                    new Date(1e3 * file.server_ctime).toLocaleString() +
+                    "</b></p>        \n        <p>当前卡密:<b>" +
+                    (null != currentKey ? currentKey : "扫码关注，发送小心「kinh」获取最新卡密") +
+                    '</b></p>\n        <p>卡密流量:<b id="pantools-flow-left">' +
+                    (flowInfo
+                      ? "\u603b\u8ba1:" +
+                        Core_1.Core.humanSize(flowInfo.TSize) +
+                        ",\u5df2\u7528:" +
+                        Core_1.Core.humanSize(flowInfo.USize) +
+                        ",\u5269\u4f59:" +
+                        Core_1.Core.humanSize(flowInfo.LSize)
+                      : "\u7a7a") +
+                    '</b></p><hr/><div style="display:flex;justify-content: space-between;margin:12px;"><div><button id="pantools-parser" class="mdui-btn mdui-color-indigo-700 mdui-ripple" style="border-radius:20px;">\u89e3\u6790\u83b7\u53d6\u76f4\u94fe</button><a href="javascript:;" id="pantools-parser-url" style="display: none;background-color:#F94D70 !important" class="mdui-btn mdui-color-indigo-700 mdui-ripple">\u70b9\u51fb\u590d\u5236\u76f4\u94fe</a><button id="pantools-ua-copy" data-clipboard-text="\u8bf7\u5148\u89e3\u6790\u6587\u4ef6\u5728\u590d\u5236UA" class="mdui-btn mdui-color-indigo-700 mdui-ripple" style="border-radius:20px;background-color: #20C265 !important;margin-left:24px">复制UA</button></div><button id="pantools-key-setting" class="mdui-btn mdui-color-indigo-700 mdui-ripple" style="float: right;margin-right: 10px;border-radius:20px;background-color:#000 !important;">\u914d\u7f6e\u5361\u5bc6</button></div>\n        <p><b style="color: red">\u89e3\u6790\u540e\u4f7f\u7528IDM\u6216\u5176\u4ed6\u4e0b\u8f7d\u5668\u65f6,\u8bf7\u4f7f\u7528\u4e0a\u65b9\u6309\u94ae\u624b\u52a8\u590d\u5236UA\u4fe1\u606f</b></p><div style="display: flex;flex-direction: row;justify-content: space-around;align-items: center;margin-top: 12px;"><span id="pantools-status" style="font-weight:bolder;">准备完成</span><img alt="扫码关注-大鹏小客微信公众号,发送消息kinh获取卡密" src="https://s1.328888.xyz/2022/04/18/rLvne.jpg" width="270px"/></div></div></div>';
                 Alert_1.Alert.html("", box, "auto"),
-                  $(".swal2-actions.pantools-actions").css({
+                  $(".pantools-popup").css({ padding: 0 }),
+                  $(".swal2-content").css({ padding: "1em 1.6em" }),
+                  $(".pantools-actions").css({
                     width: "fit-content",
                     margin: "unset",
                     position: "absolute",
-                    top: 0,
-                    right: 0,
-                  });
-                $(".swal2-actions.pantools-actions .pantools-confirm").css({
-                  display: "inline-block",
-                  padding: "0.35rem 0.6rem",
-                  borderRadius: "50%",
-                  fontSize: "1.2rem",
-                });
-                $("#pantools-btn-setting").on("click", function () {
-                  Core_1.Core.open("http://settings.shuma.ink");
-                }),
+                    top: "-25px",
+                    right: "-20px",
+                  }),
+                  $(".pantools-ua-copy").css({ borderRadius: "20px", backgroundColor: "#24D26D" }),
+                  $(".pantools-confirm").css({ borderRadius: "50%", padding: "5px 10px 3px 10px", fontSize: "24px" }),
                   $("#pantools-key-setting").on("click", function () {
                     PanParse.setKey(currentKey);
                   }),
@@ -4266,15 +4227,6 @@ var srcVersion = "1.3.4";
                   }),
                   new clipboard_1.default("#pantools-ua-copy").on("success", function () {
                     PanParse.log("UA\u4fe1\u606f\u590d\u5236\u6210\u529f!");
-                  }),
-                  $("#pantools-btn-help").on("click", function () {
-                    Core_1.Core.open("https://wiki.shuma.ink/zh-cn/faq.html");
-                  }),
-                  $("#pantools-btn-install").on("click", function () {
-                    Core_1.Core.open("https://wiki.shuma.ink/zh-cn/tools.html");
-                  }),
-                  $("#pantools-btn-joinus").on("click", function () {
-                    Core_1.Core.open("http://settings.shuma.ink/jump.html");
                   });
               }
             else Alert_1.Alert.info("\u8fd8\u6ca1\u9009\u6587\u4ef6\u54e6~", 3, "warning");
@@ -4358,16 +4310,13 @@ var srcVersion = "1.3.4";
                 );
           }),
           (PanParse.setUrl = function (url) {
-            $("#pantools-parser").hide(), $("#pantools-parser-url").attr("data-clipboard-text", url).show();
-            $("#pantools-ua-copy").show();
-            $("#ua-button-tip").show();
+            $("#pantools-parser").hide(),
+              $("#pantools-parser-url")
+                .attr("data-clipboard-text", url)
+                .show()
+                .css({ textDecoration: "none", borderRadius: "20px" });
           }),
-          (PanParse.setAria2 = function (fileUrl, fileName, userAgent) {
-            $("#pantools-btn-aria").show(),
-              $("#pantools-btn-aria").click(function () {
-                PanParse.sentToAria(fileUrl, fileName, userAgent);
-              });
-          }),
+          (PanParse.setAria2 = function (fileUrl, fileName, userAgent) {}),
           (PanParse.setUserAgent = function (userAgent) {
             "netdisk;shuma" !== userAgent &&
               ($("#uainfo").attr("data-clipboard-text", userAgent),
@@ -8340,7 +8289,7 @@ var srcVersion = "1.3.4";
             }),
             (Options.systemInit = function () {
               $("#panparse-warning").hide(),
-                $("#panparse-version").text(srcVersion),
+                $("#panparse-version").text("1.3.4"),
                 $("#panparse-title").text(
                   "[\u6570\u7801\u5c0f\u7ad9]\u8d85\u7ea7SVIP\u591a\u529f\u80fd\u5de5\u5177\u7bb1"
                 );
